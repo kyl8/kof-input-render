@@ -41,8 +41,6 @@ class ControllerBindings():
         self.LEFT = 0x1
         self.RIGHT = 0x8000
         self.NEUTRAL = 16384
-        self.screen_width = 40
-        self.screen_height = 20
 
         #sleep
         self.fps = fps 
