@@ -131,10 +131,7 @@ class ControllerBindings():
                 attempt += 1
                 time.sleep(1)
         return False
-
-    def clear_screen(self):
-        os.system('cls' if os.name == 'nt' else 'clear')
-
+        
     def update_joystick(self, button: str, duration=0.05):
         """joystick render"""
         self.j.reset_povs()
@@ -145,7 +142,7 @@ class ControllerBindings():
             self.j.set_axis(vjoy.HID_USAGE.Y, self.directional_bindings_y[button])
             self.current_y = self.directional_bindings_y[button]
         else:
-            # Return to neutral if button is not a direction
+            # return to neutral if button is not a direction
             self.j.set_axis(vjoy.HID_USAGE.X, self.NEUTRAL)
             self.j.set_axis(vjoy.HID_USAGE.Y, self.NEUTRAL)
             self.current_x = self.NEUTRAL
@@ -153,7 +150,7 @@ class ControllerBindings():
         
         self.j.update()
         
-        # Return to neutral after duration
+        # return to neutral after duration
         self.j.set_axis(vjoy.HID_USAGE.X, self.NEUTRAL)
         self.j.set_axis(vjoy.HID_USAGE.Y, self.NEUTRAL)
         self.current_x = self.NEUTRAL
@@ -193,26 +190,6 @@ class ControllerBindings():
             logging.debug(f"Pressed button {button} for {duration}s")
         except Exception as e:
             logging.error(f"vJoy error: {str(e)}")
-
-    def handle_inputs(self):
-        self.current_x = self.NEUTRAL
-        self.current_y = self.NEUTRAL
-
-        for btn_num in self.button_states:
-            self.button_states[btn_num] = 0
-
-        for key, value in self.directional_bindings_x.items():
-            if keyboard.is_pressed(key):
-                self.current_x = value
-
-        for key, value in self.directional_bindings_y.items():
-            if keyboard.is_pressed(key):
-                self.current_y = value
-
-        for key, btn_num in self.attack_bindings.items():
-            if keyboard.is_pressed(key):
-                self.button_states[btn_num] = 1
-
     
     def combo(self, buttons: list, delays: list, unit='seconds'):
         """Execute a sequence of buttons with delays between them"""
@@ -230,6 +207,6 @@ class ControllerBindings():
 if __name__ == "__main__":
     controller = ControllerBindings()
     while True:
-        controller.combo(buttons=["j", "k", "l"], delays=[60, 60, 60], unit='0')  # 3 frames ≈ 0.05s
+        controller.combo(buttons=["j", "k", "l"], delays=[0, 0, 0], unit='0')  # 3 frames ≈ 0.05s
 
 
