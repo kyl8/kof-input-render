@@ -207,6 +207,6 @@ class ControllerBindings():
 if __name__ == "__main__":
     controller = ControllerBindings()
     while True:
-        controller.combo(buttons=["j", "k", "l"], delays=[0, 0, 0], unit='0')  # 3 frames ≈ 0.05s
+        controller.combo(buttons=["j", "k", "l"], delays=[0, 0, 0], unit='0') 
 
 
