@@ -190,7 +190,7 @@ class ControllerBindings():
             logging.error(f"vJoy error: {str(e)}")
     
     def combo(self, buttons: list, delays: list, unit='seconds'):
-        """Execute a sequence of buttons with delays between them"""
+        """execute a sequence of buttons with delays between them"""
         for button, delay in zip(buttons, delays):
             if button in self.directional_bindings_x or button in self.directional_bindings_y:
                 self.update_joystick(button)
